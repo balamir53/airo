@@ -5,9 +5,10 @@ from pathlib import Path
 import pandas as pd
 
 #change this for windows path to f'{Path.home()}\\airo\\data'
-myPath = f'{Path.home()}/airo/data'
+myPath = f'{Path.home()}\\airo\\data'
 onlyfiles = [f for f in listdir(myPath) if isfile(join(myPath,f))]
 first=True
+data1=None
 for f in onlyfiles:
     #should we concat them one by one
     #will this consume more memory
@@ -17,9 +18,10 @@ for f in onlyfiles:
             first = False
     else:
         with open (join(myPath,f),'rb') as file:
-            data2 = pickle.load(file)
-            data1 = pd.concat([data1,data2])
+            data1 = pd.concat([data1,pickle.load(file)])
             print(data1.info())
+
+data1.to_pickle(f'{myPath}\\combined_data_100.pkl')
 
 def alternate_load():
     #alternative loading for less memory usage
