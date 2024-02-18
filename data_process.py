@@ -32,4 +32,4 @@ for i in range(TOTAL_ROW_NUMBER//chunksize):
         print(f'{file_path} has been written with offset:{offset} with chunksize: {chunksize}')
         count += 1
         offset += chunksize
-        # query = f'select classavailable, deptime, arrtime, brand, price FROM airo.daily_price LIMIT {chunksize} OFFSET {offset}'
+        query = f'select substring(addedtodownloadqueue ,0,11) addedtodownloadqueue, deptime, recordroute, flightno, min(price) price FROM airo.newview group by deptime, flightno, substring(addedtodownloadqueue ,0,11), recordroute limit {chunksize} offset {offset}'
