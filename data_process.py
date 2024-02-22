@@ -15,10 +15,10 @@ engine = create_engine(connection_string)
 conn = engine.connect().execution_options(
         stream_results=True)
 # query = "SELECT classavailable, deptime, arrtime, brand, price FROM airo.daily_price"
-offset = 430_000_000
+offset = 0
 chunksize = 1_000_000
 query = f'select classavailable, deptime, arrtime, brand, price FROM airo.daily_price LIMIT {chunksize} OFFSET {offset}'
-count = 430
+count = 0
 folder_path = f'{Path.home()}\\airo\\data'
 # iterator = iter(pd.read_sql_query(query , conn, parse_dates = ['deptime', 'arrtime'], dtype={'price': np.int32}, chunksize=2000000))
 # for chunk_dataframe in pd.read_sql_query(query , conn, parse_dates = ['deptime', 'arrtime'], dtype={'price': np.int32}, chunksize=5000000):
