@@ -23,9 +23,11 @@ for f in onlyfiles:
     else:
         with open (join(myPath,f),'rb') as file:
             data1 = pd.concat([data1,pickle.load(file)])
-            
+
+#agent alternative 1            
 agent = create_pandas_dataframe_agent(OpenAI(temperature=0), data1, verbose=True)
 
+#agent alternative 2
 agent = create_pandas_dataframe_agent(
     ChatOpenAI(temperature=0, model="gpt-3.5-turbo-0613"),
     data1,
